@@ -14,9 +14,15 @@ export const useMailForm = () => {
     },
   });
 
-  const onSubmit = useCallback((values: any) => {
-    console.log(values);
-  },[]);
+  const onSubmit = useCallback(async (values: any) => {
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/send`, {
+        method: "POST",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
 
   return { form, onSubmit };
 };
