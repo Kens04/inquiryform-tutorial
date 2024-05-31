@@ -13,6 +13,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { useMailForm } from "@/hooks/useMailForm";
+import { ClipLoader } from "react-spinners";
 
 const MailForm = () => {
   const { form, onSubmit } = useMailForm();
@@ -96,7 +97,9 @@ const MailForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? <ClipLoader /> : "送信"}
+        </Button>
       </form>
     </Form>
   );
